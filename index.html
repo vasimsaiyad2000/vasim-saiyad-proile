@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vasim Saiyad - Senior Java Developer & Tech Lead</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(100, 116, 139, 0.4);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(100, 116, 139, 0.7);
+        }
+
+        /* ATS Print Optimization CSS */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                font-family: Arial, Helvetica, sans-serif !important;
+                font-size: 10pt !important;
+                line-height: 1.3 !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .print-only {
+                display: block !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            a {
+                color: #000000 !important;
+                text-decoration: none !important;
+            }
+
+            .card-box {
+                border: none !important;
+                box-shadow: none !important;
+                padding: 0 !important;
+                margin-bottom: 0.75rem !important;
+                background: transparent !important;
+            }
+
+            .skill-badge {
+                border: 1px solid #ccc !important;
+                color: #000 !important;
+                background: transparent !important;
+                padding: 2px 6px !important;
+                font-size: 8pt !important;
+            }
+        }
+
+        .print-only {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 font-sans transition-colors duration-300">
+
+    <!-- Top Fixed Navigation Bar -->
+    <header class="no-print sticky top-0 z-50 backdrop-blur-md bg-white/80 dark:bg-slate-900/80 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-all">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo / Brand -->
+                <a href="#" class="flex items-center gap-2 font-bold text-xl tracking-tight text-brand-600 dark:text-brand-500">
+                    <span class="p-1.5 bg-brand-600 text-white rounded-lg"><i class="fa-solid me-0.5 fa-code"></i></span>
+                    <span>Vasim<span class="text-slate-700 dark:text-slate-300">.java</span></span>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                    <a href="#about" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">About</a>
+                    <a href="#skills" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Skills</a>
+                    <a href="#projects" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Projects</a>
+                    <a href="#experience" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Experience</a>
+                    <a href="#education" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Education</a>
+                    <a href="#contact" class="hover:text-brand-600 dark:hover:text-brand-500 transition-colors">Contact</a>
+                </nav>
+
+                <!-- Actions Button Group -->
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <button onclick="copyFormattedText()" id="copyBtn" class="no-print px-3 py-1.5 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-colors flex items-center gap-1.5" title="Copy Resume Plain Text for Job Portals">
+                        <i class="fa-regular fa-copy"></i>
+                        <span class="hidden sm:inline">Copy Text</span>
+                    </button>
+
+                    <button onclick="window.print()" class="no-print px-3.5 py-1.5 text-xs font-semibold rounded-lg bg-brand-600 hover:bg-brand-700 text-white shadow-sm hover:shadow transition-all flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Print / Save PDF</span>
+                    </button>
+
+                    <!-- Dark Mode Toggle -->
+                    <button id="themeToggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors" aria-label="Toggle Dark Mode">
+                        <i class="fa-solid fa-moon dark:hidden"></i>
+                        <i class="fa-solid fa-sun hidden dark:block"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="no-print fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 z-50 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-xl shadow-2xl flex items-center gap-3 border border-slate-700 dark:border-slate-200">
+        <i class="fa-solid fa-circle-check text-green-400 dark:text-green-600 text-lg"></i>
+        <span id="toastMsg" class="text-sm font-medium">Resume text copied to clipboard!</span>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+
+        <!-- Profile / Hero Section -->
+        <section id="about" class="mb-12">
+            <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200/80 dark:border-slate-700/80 relative overflow-hidden">
+                <!-- Background Accent Blur -->
+                <div class="no-print absolute -top-24 -right-24 w-72 h-72 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="flex flex-col md:flex-row gap-6 items-center md:items-start justify-between">
+                    <!-- Profile Picture Column -->
+                    <div class="flex-shrink-0">
+                        <img src="MOHAMADVASIM_ENC15963.jpeg" alt="Vasim Saiyad Profile Picture" class="w-36 h-36 sm:w-40 sm:h-40 rounded-2xl object-cover border-4 border-brand-500/20 shadow-md">
+                    </div>
+
+                    <!-- Details Column -->
+                    <div class="space-y-4 max-w-2xl text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-800">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            <span>18+ Years Enterprise Java Experience</span>
+                        </div>
+
+                        <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Vasim Saiyad
+                        </h1>
+
+                        <p class="text-lg sm:text-xl font-medium text-brand-600 dark:text-brand-400">
+                            Senior Java Developer & Technology Lead
+                        </p>
+
+                        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Specializing in building, optimizing, and scaling high-performance enterprise applications using <b>Core Java</b>, <b>Spring Boot</b>, <b>Microservices</b>, and modern cloud ecosystem architectures.
+                        </p>
+
+                        <!-- Quick Contact Links -->
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-y-2 gap-x-4 pt-2 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
+                            <div class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-location-dot text-brand-500"></i>
+                                <span>Ahmedabad, Gujarat, India</span>
+                            </div>
+                            <a href="mailto:vasimsaiyad2000@gmail.com" class="flex items-center gap-1.5 hover:text-brand-600 transition-colors">
+                                <i class="fa-solid fa-envelope text-brand-500"></i>
+                                <span>vasimsaiyad2000@gmail.com</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/vasim-saiyad-55188219" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 hover:text-brand-600 transition-colors">
+                                <i class="fa-brands fa-linkedin text-brand-500"></i>
+                                <span>linkedin.com/in/vasim-saiyad-55188219</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons / Stats Badge -->
+                    <div class="no-print flex flex-col sm:flex-row md:flex-col gap-3 min-w-[180px] justify-center w-full md:w-auto">
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-4 rounded-xl border border-slate-200 dark:border-slate-700/60 text-center">
+                            <div class="text-2xl font-black text-brand-600 dark:text-brand-400">18+</div>
+                            <div class="text-xs uppercase tracking-wider font-semibold text-slate-500 dark:text-slate-400">Years Exp.</div>
+                        </div>
+                        <a href="#contact" class="w-full py-2.5 px-4 bg-slate-900 hover:bg-slate-800 dark:bg-slate-100 dark:hover:bg-white dark:text-slate-900 text-white text-xs font-bold rounded-xl text-center shadow transition-all">
+                            Contact Me
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Section -->
+        <section class="mb-12">
+            <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200/80 dark:border-slate-700/80">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-user-gear text-brand-500"></i>
+                     Professional Summary
+                </h2>
+                <div class="space-y-3 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                    <p>
+                        With <b>18+ years of experience</b> as a Java Developer and Technical Lead, I have built, optimized, and scaled enterprise applications using Core Java, J2EE, and modern web frameworks. My expertise spans across <b>Spring Boot, Hibernate, Struts, Apache Lucene</b>, and Web Services (<b>SOAP & RESTful</b>), enabling me to develop robust and efficient solutions in microservices-driven environments.
+                    </p>
+                    <p>
+                        Throughout my career, I have worked with relational and NoSQL databases like <b>Oracle, MySQL, MongoDB, DynamoDB, Redis, and Elasticsearch</b> ensuring seamless data management and high-performance querying. I am well-versed in engineering toolchains such as <b>Maven, Gradle, SonarQube</b>, and <b>GrayLog</b> for CI/CD and system observability.
+                    </p>
+                    <p>
+                        Beyond technical mastery, I bring a problem-solving mindset, strong collaborative spirit, and extensive team mentoring experience to foster innovative agile engineering cultures.
+                    </p>
+                </div>
+
+                <!-- Strategic Tags -->
+                <div class="mt-6 flex flex-wrap gap-2 text-xs font-medium font-mono text-slate-500 dark:text-slate-400">
+                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 rounded-md">#Java</span>
+                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 rounded-md">#SpringBoot</span>
+                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 rounded-md">#Microservices</span>
+                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 rounded-md">#RESTfulAPI</span>
+                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 rounded-md">#NoSQL</span>
+                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 rounded-md">#RDBMS</span>
+                    <span class="px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 rounded-md">#TechLeadership</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="mb-12">
+            <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200/80 dark:border-slate-700/80">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-brand-500"></i>
+                        Technical Skills & Competencies
+                    </h2>
+                    <!-- Quick Skill Search Box -->
+                    <div class="no-print relative min-w-[220px]">
+                        <input type="text" id="skillSearch" onkeyup="filterSkills()" placeholder="Filter skills..." class="w-full text-xs px-3 py-2 pl-8 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-xs text-slate-400"></i>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="skillsGrid">
+                    <!-- Category 1 -->
+                    <div class="skill-card bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-200/60 dark:border-slate-700/50">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-code"></i> Core & Frameworks
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Core Java</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">J2EE</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs font-semibold text-brand-600 dark:text-brand-400">Spring Boot</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Hibernate</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Microservices</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">REST Services</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">SOAP Web Services</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Struts</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Servlets</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 2 -->
+                    <div class="skill-card bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-200/60 dark:border-slate-700/50">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-database"></i> Databases & Caching
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Oracle</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">MySQL</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">MongoDB</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">DynamoDB</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Redis</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Elasticsearch</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Apache Lucene</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 3 -->
+                    <div class="skill-card bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-200/60 dark:border-slate-700/50">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-gears"></i> DevOps, CI/CD & Tools
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Maven</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Gradle</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">SonarQube</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">GrayLog</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Git</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Agile Methodologies</span>
+                        </div>
+                    </div>
+
+                    <!-- Category 4 -->
+                    <div class="skill-card bg-slate-50 dark:bg-slate-900/50 p-5 rounded-xl border border-slate-200/60 dark:border-slate-700/50">
+                        <h3 class="text-sm font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-language"></i> Languages & Leadership
+                        </h3>
+                        <div class="flex flex-wrap gap-2 mb-3">
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">English (Professional)</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Hindi (Native/Fluent)</span>
+                            <span class="skill-badge px-3 py-1.5 text-xs font-medium rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-2xs">Gujarati (Native)</span>
+                        </div>
+                        <div class="text-xs text-slate-500 dark:text-slate-400">
+                            <b>Leadership:</b> Team Mentoring, Technical Architecture, Agile Project Management, Code Review & Refactoring.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Projects Section -->
+        <section id="projects" class="mb-12">
+            <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200/80 dark:border-slate-700/80">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-diagram-project text-brand-500"></i>
+                        Key Portfolio Projects
+                    </h2>
+                    <span class="no-print text-xs font-mono text-slate-400">8 Projects</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                    <!-- Project 1 -->
+                    <div class="card-box bg-slate-50 dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. Jahez - Food Delivery Platform</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 whitespace-nowrap">
+                                    Nov 2019 – Dec 2022
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Jahez is Saudi Arabia's leading online food delivery platform. The platform connects merchants, customers, and delivery partners via an easy-to-use mobile application, providing a quick, seamless, and almost entirely automated end-to-end delivery experience.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">Technologies:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Java8</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Spring Boot</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Maven</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Postgres</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Redis</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="card-box bg-slate-50 dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">2. Investmitra - Wealth Management Solution</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                                    Feb 2019 – Sep 2019
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Robo advisory platform providing wealth management solutions including Financial Planning, Automated Investment Advisory, and Portfolio Management. Offers Direct Plans of Mutual Funds without traditional commission biases.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">Technologies:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Java8</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Spring Boot</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Maven</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">ReactJs</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">MongoDB</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="card-box bg-slate-50 dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">3. SaveDay</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                                    Sep 2016 – Jun 2018
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Technology-enabled financial savings platform designed to provide easy and affordable savings and retirement plans targeting 5.7M small businesses.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">Technologies:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Java</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Spring</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">MongoDB</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Amazon S3</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Gradle</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">AngularJS</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Microservices</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="card-box bg-slate-50 dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">4. Digital Advisor - FolioDynamix</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                                    Jun 2017 – Dec 2017
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Digital Advice solution allowing financial advisors to seamlessly collaborate with clients across all account sizes with high reliability.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">Technologies:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Java</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Spring Boot</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Spring Data</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">DB2</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Maven</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">JUnit</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">ReactJS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="card-box bg-slate-50 dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">5. Gophr</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                                    Jun 2015 – Sep 2016
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                A digital library application that allows users to search articles based on given keywords from search engines like Google, Bing, and Readability API, and publish them or custom articles to their portals.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">Technologies:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Java</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Jersey</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Amazon DynamoDB</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Amazon CloudSearch</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Amazon S3</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">AngularJS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="card-box bg-slate-50 dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">6. Social Notification System</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                                    Oct 2015 – Sep 2016
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Intuitive interactive notification platform streamlining work and customer interactions. Built as an enterprise platform connecting employees, customers, and content for a top-five US brick and mortar retailer.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">Technologies:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Java</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Jersey</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">MongoDB</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Redis</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Memcache</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">BackboneJS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 7 -->
+                    <div class="card-box bg-slate-50 dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">7. Online Digital Portal (UltimatStock)</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                                    Mar 2014 – Jun 2014
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Innovative digital portal for visual content created for customers seeking stock photos and videos, facilitating seamless buying and selling for media projects.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">Technologies:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Java</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Struts2</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Hibernate3</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Jquery</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">MySQL</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Amazon S3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 8 -->
+                    <div class="card-box bg-slate-50 dark:bg-slate-900/60 p-6 rounded-xl border border-slate-200/80 dark:border-slate-700/60 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between gap-2 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">8. Project Management System (Bygglet)</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 whitespace-nowrap">
+                                    Jul 2013 – Feb 2014
+                                </span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4">
+                                Web and mobile project management system targeting the real estate domain. Includes planning, assets, and logistics modules with multi-language support from startup to billing.
+                            </p>
+                        </div>
+                        <div class="pt-3 border-t border-slate-200/60 dark:border-slate-800">
+                            <span class="text-xs font-bold text-slate-500 dark:text-slate-400 block mb-2">Technologies:</span>
+                            <div class="flex flex-wrap gap-1.5">
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Java</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">SpringMVC</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Angular JS</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Html5</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">Bootstrap</span>
+                                <span class="skill-badge px-2.5 py-1 text-xs font-mono rounded bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">MySQL</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="mb-12">
+            <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200/80 dark:border-slate-700/80">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-brand-500"></i>
+                         Professional Work History
+                    </h2>
+                    <span class="no-print text-xs font-mono text-slate-400">8 Key Roles</span>
+                </div>
+
+                <!-- Timeline Container -->
+                <div class="relative border-l-2 border-slate-200 dark:border-slate-700 ml-3 sm:ml-4 space-y-8">
+
+                    <!-- Item 1 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-brand-600 border-4 border-white dark:border-slate-800 group-hover:scale-125 transition-transform"></div>
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Senior Engineer</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300 w-fit">
+                                    Feb 2023 - Present (3+ yrs)
+                                </span>
+                            </div>
+                            <div class="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
+                                Coforge <span class="text-slate-400 font-normal">| Ahmedabad, Gujarat, India</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Leading microservice migration, performance tuning, and development of scalable enterprise backend systems using Spring Boot, Hibernate, and RESTful APIs in a cloud environment.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-800 group-hover:scale-125 transition-transform"></div>
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Senior Java Consultant</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit">
+                                    Nov 2019 - Dec 2022 (3 yrs 2 mos)
+                                </span>
+                            </div>
+                            <div class="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
+                                Systematic Technologies <span class="text-slate-400 font-normal">| Hyderabad, Telangana, India</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Consulted on high-throughput J2EE systems, database optimization (Oracle/MySQL), and code quality assurance using SonarQube and automated deployment tools.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-800 group-hover:scale-125 transition-transform"></div>
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Technology Lead - Java</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit">
+                                    Feb 2019 - Sep 2019 (8 mos)
+                                </span>
+                            </div>
+                            <div class="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
+                                Investmitra <span class="text-slate-400 font-normal">| Ahmedabad Area, India</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Managed financial platform engineering teams, architecting secure REST services and NoSQL database integrations for rapid real-time transaction processing.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-800 group-hover:scale-125 transition-transform"></div>
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Senior Java Consultant / Tech Lead</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit">
+                                    July 2018 - Dec 2018 (6 mos)
+                                </span>
+                            </div>
+                            <div class="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
+                                Emxcel Corporate Logic & Solutions <span class="text-slate-400 font-normal">| Ahmedabad, Gujarat, India</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Supervised technical architecture delivery and backend modernizations utilizing Maven build systems and Hibernate persistent layer optimizations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-800 group-hover:scale-125 transition-transform"></div>
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Technology Lead - Java</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit">
+                                    Nov 2016 - June 2018 (1 yr 8 mos)
+                                </span>
+                            </div>
+                            <div class="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
+                                Sooryen Technologies <span class="text-slate-400 font-normal">| Ahmedabad Area, India</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Directed e-commerce engineering initiatives, implementing Elasticsearch/Apache Lucene search modules and web service integrations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-800 group-hover:scale-125 transition-transform"></div>
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Java Developer (Contract)</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit">
+                                    June 2015 - Nov 2016 (1 yr 6 mos)
+                                </span>
+                            </div>
+                            <div class="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
+                                TGP Associates <span class="text-slate-400 font-normal">| India</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Developed customizable modules utilizing Core Java, Spring, and SQL database layers for enterprise clients.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 7 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-800 group-hover:scale-125 transition-transform"></div>
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Software Engineer - Java Developer</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit">
+                                    May 2013 - March 2015 (1 yr 11 mos)
+                                </span>
+                            </div>
+                            <div class="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
+                                IndiaNIC Infotech Ltd <span class="text-slate-400 font-normal">| Ahmedabad Area, India</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Engineered web applications using Servlets, JSP, Struts framework, and relational database management systems.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Item 8 -->
+                    <div class="relative pl-6 sm:pl-8 group">
+                        <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-slate-600 border-4 border-white dark:border-slate-800 group-hover:scale-125 transition-transform"></div>
+                        <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                                <h3 class="text-lg font-bold text-slate-900 dark:text-white">Software Engineer - Java Developer</h3>
+                                <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit">
+                                    March 2010 - April 2013 (3 yrs 2 mos)
+                                </span>
+                            </div>
+                            <div class="text-sm font-semibold text-brand-600 dark:text-brand-400 mb-2">
+                                Verve Systems Pvt. Ltd <span class="text-slate-400 font-normal">| Ahmedabad Area, India</span>
+                            </div>
+                            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                                Started career building core backend algorithms, object-oriented Java solutions, bug fixing, and unit test suites.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="mb-12">
+            <div class="bg-white dark:bg-slate-800/80 rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200/80 dark:border-slate-700/80">
+                <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-brand-500"></i>
+                     Education & Qualification
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                        <div class="text-xs font-bold text-brand-600 dark:text-brand-400 mb-1">2005 - 2008</div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Master of Computer Applications (MCA)</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Information Technology</p>
+                        <p class="text-xs text-slate-400 mt-2 font-medium">Hemchandracharya North Gujarat University</p>
+                    </div>
+
+                    <div class="bg-slate-50 dark:bg-slate-900/60 p-5 rounded-xl border border-slate-200/80 dark:border-slate-700/60">
+                        <div class="text-xs font-bold text-brand-600 dark:text-brand-400 mb-1">2001 - 2004</div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Bachelor of Science (BS)</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">Physics</p>
+                        <p class="text-xs text-slate-400 mt-2 font-medium">Sheth M.N. Science College, HNGU Patan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact & Footer -->
+        <section id="contact" class="no-print">
+            <div class="bg-gradient-to-r from-brand-600 to-brand-800 rounded-2xl p-6 sm:p-8 text-white shadow-lg text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+                <div>
+                    <h2 class="text-2xl font-bold">Let's Connect & Collaborate</h2>
+                    <p class="text-brand-100 text-sm mt-1 max-w-xl">
+                        Open to exciting leadership roles, technical consulting, and architectural opportunities.
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <a href="mailto:vasimsaiyad2000@gmail.com" class="px-4 py-2.5 bg-white text-brand-700 hover:bg-brand-50 font-bold text-xs rounded-xl shadow transition-colors flex items-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> Send Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/vasim-saiyad-55188219" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 bg-brand-900/60 hover:bg-brand-900/80 text-white font-bold text-xs rounded-xl border border-brand-400/30 transition-colors flex items-center gap-2">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+
+            <p class="text-center text-xs text-slate-400 dark:text-slate-500 mt-8 mb-4">
+                © <span id="year"></span> Vasim Saiyad. Interactive ATS Profile.
+            </p>
+        </section>
+
+    </main>
+
+    <script>
+        // Set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Dark Mode Toggle Logic
+        const themeToggleBtn = document.getElementById('themeToggle');
+        
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+
+        // Skill Filter Logic
+        function filterSkills() {
+            const query = document.getElementById('skillSearch').value.toLowerCase();
+            const cards = document.querySelectorAll('.skill-card');
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                if (text.includes(query)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        // Copy Plain Text ATS Resume to Clipboard
+        function copyFormattedText() {
+            const plainTextResume = `
+VASIM SAIYAD
+Senior Java Developer / Technology Lead
+Location: Ahmedabad, Gujarat, India
+Email: vasimsaiyad2000@gmail.com
+LinkedIn: https://www.linkedin.com/in/vasim-saiyad-55188219
+
+SUMMARY:
+With 18+ years of experience as a Java Developer, I have built, optimized, and scaled enterprise applications using Core Java, J2EE, and modern frameworks. My expertise spans Spring Boot, Hibernate, Struts, Apache Lucene, and Web Services (SOAP & RESTful). Experienced with databases (Oracle, MySQL, MongoDB, DynamoDB, Redis, Elasticsearch) and CI/CD tools (Maven, Gradle, SonarQube, GrayLog).
+
+TECHNICAL SKILLS:
+- Core & Frameworks: Core Java, J2EE, Spring Boot, Hibernate, Struts, Servlets, JavaScript, Microservices, REST Services, SOAP
+- Databases & Caching: Oracle, MySQL, MongoDB, DynamoDB, Redis, Elasticsearch, Apache Lucene
+- Tools & CI/CD: Maven, Gradle, SonarQube, Graylog, Git
+- Languages: English, Hindi, Gujarati
+
+KEY PROJECTS:
+1. Jahez - Food Delivery Platform (Nov 2019 – Dec 2022)
+   - Leading online food delivery platform in Saudi Arabia connecting merchants, customers, and delivery partners.
+   - Tech: Java8, Spring Boot, Maven, Postgres, Redis.
+
+2. Investmitra - Wealth Management Solution (Feb 2019 – Sep 2019)
+   - Robo advisory platform with financial planning and portfolio management.
+   - Tech: Java8, Spring Boot, Maven, ReactJs, MongoDB.
+
+3. SaveDay (Sep 2016 – Jun 2018)
+   - Savings and retirement platform for small businesses.
+   - Tech: Java, Spring, MongoDB, Amazon S3, Gradle, AngularJS, Microservices.
+
+4. Digital Advisor - FolioDynamix (Jun 2017 – Dec 2017)
+   - Collaboration platform for advisors and clients.
+   - Tech: Java, Spring Boot, Spring Data, DB2, Maven, JUnit, Mockito, ReactJS, SonarQube.
+
+5. Gophr (Jun 2015 – Sep 2016)
+   - Digital article search engine and publishing platform.
+   - Tech: Java, Jersey, Amazon DynamoDB, Amazon CloudSearch, Amazon S3, Maven, AngularJS.
+
+6. Social Notification System (Oct 2015 – Sep 2016)
+   - Interactive notification platform for enterprise retail workspace.
+   - Tech: Java, Jersey, MongoDB, Redis, Memcache, BackboneJS, Jquery.
+
+7. Online Digital Portal - UltimatStock (Mar 2014 – Jun 2014)
+   - Digital portal marketplace for stock photos and video assets.
+   - Tech: Java, Struts2, Hibernate3, Jquery, MySQL, Amazon S3.
+
+8. Project Management System - Bygglet (Jul 2013 – Feb 2014)
+   - Real estate domain project management and multi-lingual portal.
+   - Tech: Java, SpringMVC, AngularJS, Html5, Bootstrap, MySQL.
+
+WORK EXPERIENCE:
+1. Senior Engineer | Coforge (Feb 2023 - Present)
+2. Senior Java Consultant | Systematic Technologies (Nov 2019 - Dec 2022)
+3. Technology Lead - Java | Investmitra (Feb 2019 - Sep 2019)
+4. Senior Java Consultant / Tech Lead | Emxcel Corporate Logic & Solutions (July 2018 - Dec 2018)
+5. Technology Lead - Java | Sooryen Technologies (Nov 2016 - June 2018)
+6. Java Developer (Contract) | TGP Associates (June 2015 - Nov 2016)
+7. Software Engineer - Java Developer | IndiaNIC Infotech Ltd (May 2013 - March 2015)
+8. Software Engineer - Java Developer | Verve Systems Pvt. Ltd (March 2010 - April 2013)
+
+EDUCATION:
+- Master of Computer Applications (MCA), Information Technology (2005 - 2008)
+- Bachelor of Science (BS), Physics (2001 - 2004)
+            `.trim();
+
+            // Fallback clipboard method
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = plainTextResume;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempTextArea);
+
+            showToast("ATS Plain Text copied to clipboard!");
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
